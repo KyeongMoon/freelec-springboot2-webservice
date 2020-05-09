@@ -4,15 +4,18 @@ jdk :
 
 branches:
   only:
-    - master
+  - master
 
 #Travis CI 서버의 Home
 cache:
   directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.gradle'
+  - '$HOME/.m2/repository'
+  - '$HOME/.gradle'
 
 before_install: chmod +x gradlew
+
+script: "./gradlew clean build"
+
 
 before_deploy:
   - zip -r freelec-springboot2-webservice *
@@ -40,7 +43,6 @@ deploy:
     region: ap-northeast-2
     wait-until-deployed: true
 
-script: "./gradlew clean build"
 
 #CI 실행 완료 시 메일로 알람
 notifications:
